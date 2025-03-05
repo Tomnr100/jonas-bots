@@ -41,10 +41,12 @@ private boolean shouldRegear = false;
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (e.getKeyChar() == 'a' ) {
+        char keyChar = e.getKeyChar();
+        log.info("Key Typed: {}", keyChar); // Log the key character
+        DefaultUI.setStatus("Keystroke " + keyChar + " heard");
+        if (e.getKeyChar() == 'b' || e.getKeyChar() == 'b')  {
             DefaultUI.setStatus("Keystroke A heard");
             shouldRegear = true;
-            bp.invoke();
         }
     }
 
