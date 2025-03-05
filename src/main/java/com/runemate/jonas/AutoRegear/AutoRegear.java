@@ -26,7 +26,7 @@ private boolean shouldRegear = false;
 
     @Override
     public void onStart(String... args) {
-//        getEventDispatcher().addListener(this);
+      getEventDispatcher().addListener(this);
     }
 
     @Override
@@ -91,20 +91,25 @@ private boolean shouldRegear = false;
         Bank.withdraw("Blighted karambwan", 1);
         Bank.withdraw("Blighted anglerfish", 1);
         Bank.withdraw("Divine ranging potion(1)", 1);
-
+        DefaultUI.setStatus("Closing bank...");
+        Bank.close();
+        Execution.delayWhile(Bank::isOpen, 10000);
 
         DefaultUI.setStatus("Equipping and pre potting...");
 
+        // Wear items
         Inventory.getItems("Coif").first().interact("Wear");
         Inventory.getItems("Ava's accumulator").first().interact("Wear");
         Inventory.getItems("Amulet of power").first().interact("Wear");
         Inventory.getItems("Leather body").first().interact("Wear");
-        Inventory.getItems("Dark bow").first().interact("Wear");
         Inventory.getItems("Black d'hide chaps").first().interact("Wear");
         Inventory.getItems("Black d'hide vambraces").first().interact("Wear");
         Inventory.getItems("Ring of recoil").first().interact("Wear");
-        Inventory.getItems("Dragon arrow").first().interact("Wear");
-        Inventory.getItems("Dragon thrownaxe").first().interact("Wear");
+
+        // Wield weapons
+        Inventory.getItems("Dark bow").first().interact("Wield");
+        Inventory.getItems("Dragon arrow").first().interact("Wield");
+        //Inventory.getItems("Dragon thrownaxe").first().interact("Wield");
 
         Inventory.getItems("Blighted anglerfish").first().interact("Eat");
         Inventory.getItems("Divine ranging potion(1)").first().interact("Drink");
